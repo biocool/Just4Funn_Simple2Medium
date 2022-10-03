@@ -1,0 +1,118 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+
+# Description
+Given an unsorted array A of size N that contains only non-negative integers, find a continuous sub-array which adds to a given number S.
+
+In case of multiple subarrays, return the subarray which comes first on moving from left to right.
+
+## Example 1:
+Input:
+N = 5, S = 12
+A[] = {1,2,3,7,5}
+Output: 2 4
+Explanation: The sum of elements 
+from 2nd position to 4th position 
+is 12.
+## Example 2:
+Input:
+N = 10, S = 15
+A[] = {1,2,3,4,5,6,7,8,9,10}
+Output: 1 5
+Explanation: The sum of elements 
+from 1st position to 5th position
+is 15.
+```{r}
+
+```
+
+
+```{r main}
+subarraySum <- function(vctr, sum)
+{
+  left <- 1
+  right <- 2
+  found <- 0
+  while(right <= length(inpt_vctr))
+  {
+      current_window_sum <- sum(inpt_vctr[c(left:right)])
+      if(current_window_sum == N)
+      {
+        print("Fount it!! Found it!!")
+        print(left)
+        print(right)
+        found <- 1
+        break
+      }else if (current_window_sum > N) 
+      {
+        left <- left + 1
+      }else {
+         right <- right + 1
+      }
+  }
+  if (!found) 
+  {
+    print("Sorry I didn't find anything!! :(")   
+  }
+  print(left)
+  print(right)
+}
+```
+
+```{r O(N)}
+
+subarraySumV2 <- function(vctr, sum)
+{
+  left <- 1
+  right <- 1
+  found <- 0
+  current_window_sum <- inpt_vctr[1]
+  while(right <= length(inpt_vctr))
+  {
+      if(current_window_sum == N)
+      {
+        print("Fount it!! Found it!!")
+        print(left)
+        print(right)
+        found <- 1
+        break
+      }else if (current_window_sum > N) 
+      {
+        current_window_sum = current_window_sum - inpt_vctr[left]
+        left <- left + 1
+        if (left > right)
+        {
+          if (left > n)
+          {
+          break
+          }
+          right <- left
+          current_window_sum <- inpt_vctr[left]
+        }
+      }else 
+      {
+         right <- right + 1
+         if (right >= n)
+         {
+           break
+         }
+         current_window_sum <- current_window_sum + inpt_vctr[right]
+      }
+  }
+  if (!found) 
+  {
+    print("Sorry I didn't find anything!! :(")   
+  }
+  print(left)
+  print(right)
+}
+
+```
+
